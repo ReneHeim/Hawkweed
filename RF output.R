@@ -2,12 +2,17 @@ testdf <- res.flow$confusion
 
 tab <- testdf$table
 #str(tab)
-d <- rowSums(tab[1:10,])
-c <- colSums(tab[,1:10])
+d <- rowSums(tab[1:nrow(tab),])#totals
+c <- colSums(tab[,1:ncol(tab)])#totals
 
 df <- rbind(tab, c)
 df <- cbind(df, d)
 
 #calculate diagonale
-df[11,11] <- 0
-df[11,11] <- sum(diag(df))
+df[nrow(df),ncol(df)] <- 0
+df[nrow(df),ncol(df)] <- sum(diag(df))
+
+di <- diag(df)
+
+PA <- head(di, -1)/head(df['c',],-1)#PA
+UA <- head(di, -1)/head(df[,'d'],-1)#UA
