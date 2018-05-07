@@ -14,5 +14,5 @@ df[nrow(df),ncol(df)] <- sum(diag(df))
 
 di <- diag(df)
 
-PA <- head(di, -1)/head(df['c',],-1)#PA
-UA <- head(di, -1)/head(df[,'d'],-1)#UA
+PA <- round(head(di, -1)/head(df['c',],-1),3)*100#PA
+UA <- round(head(di, -1)/head(df[,'d'],-1),3)*100#UA
