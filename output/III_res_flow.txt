@@ -1,0 +1,219 @@
+$fit
+Random Forest 
+
+ 283 samples
+2001 predictors
+  10 classes: 'AlpineGroundsel_flower', 'AlpineSunray_Flower', 'BillyButton_flower', 'CarpetHeath_L_F', 'Flatweed_flower_yellow', 'HairyButtercupFlowerYellow', 'OWH_flower', 'OWH_leaf_purple', 'StJohn_Worf_flower', 'Xsub_flower' 
+
+No pre-processing
+Resampling: Bootstrapped (100 reps) 
+Summary of sample sizes: 283, 283, 283, 283, 283, 283, ... 
+Resampling results:
+
+  Accuracy   Kappa    
+  0.8618555  0.8393231
+
+Tuning parameter 'mtry' was held constant at a value of 44
+
+$pred
+ [1] AlpineGroundsel_flower     Flatweed_flower_yellow     AlpineGroundsel_flower    
+ [4] AlpineGroundsel_flower     AlpineGroundsel_flower     AlpineGroundsel_flower    
+ [7] AlpineGroundsel_flower     AlpineGroundsel_flower     AlpineSunray_Flower       
+[10] AlpineSunray_Flower        AlpineSunray_Flower        AlpineSunray_Flower       
+[13] AlpineSunray_Flower        AlpineSunray_Flower        AlpineSunray_Flower       
+[16] AlpineSunray_Flower        AlpineSunray_Flower        AlpineSunray_Flower       
+[19] AlpineSunray_Flower        AlpineSunray_Flower        BillyButton_flower        
+[22] BillyButton_flower         BillyButton_flower         BillyButton_flower        
+[25] BillyButton_flower         BillyButton_flower         BillyButton_flower        
+[28] BillyButton_flower         BillyButton_flower         BillyButton_flower        
+[31] BillyButton_flower         BillyButton_flower         BillyButton_flower        
+[34] BillyButton_flower         BillyButton_flower         CarpetHeath_L_F           
+[37] CarpetHeath_L_F            CarpetHeath_L_F            CarpetHeath_L_F           
+[40] CarpetHeath_L_F            CarpetHeath_L_F            CarpetHeath_L_F           
+[43] CarpetHeath_L_F            CarpetHeath_L_F            CarpetHeath_L_F           
+[46] CarpetHeath_L_F            CarpetHeath_L_F            Flatweed_flower_yellow    
+[49] OWH_flower                 Flatweed_flower_yellow     Flatweed_flower_yellow    
+[52] Flatweed_flower_yellow     StJohn_Worf_flower         HairyButtercupFlowerYellow
+[55] OWH_flower                 OWH_flower                 OWH_leaf_purple           
+[58] OWH_flower                 OWH_flower                 OWH_flower                
+[61] OWH_flower                 OWH_flower                 OWH_flower                
+[64] OWH_flower                 OWH_flower                 OWH_flower                
+[67] OWH_flower                 OWH_flower                 OWH_flower                
+[70] OWH_flower                 OWH_flower                 OWH_flower                
+[73] OWH_flower                 OWH_flower                 OWH_leaf_purple           
+[76] OWH_leaf_purple            OWH_leaf_purple            StJohn_Worf_flower        
+[79] BillyButton_flower         StJohn_Worf_flower         StJohn_Worf_flower        
+[82] StJohn_Worf_flower         StJohn_Worf_flower         BillyButton_flower        
+[85] StJohn_Worf_flower         OWH_flower                 Xsub_flower               
+[88] Xsub_flower                Xsub_flower                HairyButtercupFlowerYellow
+[91] StJohn_Worf_flower         StJohn_Worf_flower        
+10 Levels: AlpineGroundsel_flower AlpineSunray_Flower BillyButton_flower ... Xsub_flower
+
+$confusion
+Confusion Matrix and Statistics
+
+                            Reference
+Prediction                   AlpineGroundsel_flower AlpineSunray_Flower BillyButton_flower
+  AlpineGroundsel_flower                          7                   0                  0
+  AlpineSunray_Flower                             0                  12                  0
+  BillyButton_flower                              0                   0                 15
+  CarpetHeath_L_F                                 0                   0                  0
+  Flatweed_flower_yellow                          1                   0                  0
+  HairyButtercupFlowerYellow                      0                   0                  0
+  OWH_flower                                      0                   0                  0
+  OWH_leaf_purple                                 0                   0                  0
+  StJohn_Worf_flower                              0                   0                  0
+  Xsub_flower                                     0                   0                  0
+                            Reference
+Prediction                   CarpetHeath_L_F Flatweed_flower_yellow HairyButtercupFlowerYellow
+  AlpineGroundsel_flower                   0                      0                          0
+  AlpineSunray_Flower                      0                      0                          0
+  BillyButton_flower                       0                      0                          0
+  CarpetHeath_L_F                         12                      0                          0
+  Flatweed_flower_yellow                   0                      4                          0
+  HairyButtercupFlowerYellow               0                      0                          1
+  OWH_flower                               0                      1                          0
+  OWH_leaf_purple                          0                      0                          0
+  StJohn_Worf_flower                       0                      0                          1
+  Xsub_flower                              0                      0                          0
+                            Reference
+Prediction                   OWH_flower OWH_leaf_purple StJohn_Worf_flower Xsub_flower
+  AlpineGroundsel_flower              0               0                  0           0
+  AlpineSunray_Flower                 0               0                  0           0
+  BillyButton_flower                  0               0                  2           0
+  CarpetHeath_L_F                     0               0                  0           0
+  Flatweed_flower_yellow              0               0                  0           0
+  HairyButtercupFlowerYellow          0               0                  0           1
+  OWH_flower                         19               0                  1           0
+  OWH_leaf_purple                     1               3                  0           0
+  StJohn_Worf_flower                  0               0                  6           2
+  Xsub_flower                         0               0                  0           3
+
+Overall Statistics
+                                          
+               Accuracy : 0.8913          
+                 95% CI : (0.8092, 0.9466)
+    No Information Rate : 0.2174          
+    P-Value [Acc > NIR] : < 2.2e-16       
+                                          
+                  Kappa : 0.8741          
+ Mcnemar's Test P-Value : NA              
+
+Statistics by Class:
+
+                     Class: AlpineGroundsel_flower Class: AlpineSunray_Flower
+Sensitivity                                0.87500                     1.0000
+Specificity                                1.00000                     1.0000
+Pos Pred Value                             1.00000                     1.0000
+Neg Pred Value                             0.98824                     1.0000
+Prevalence                                 0.08696                     0.1304
+Detection Rate                             0.07609                     0.1304
+Detection Prevalence                       0.07609                     0.1304
+Balanced Accuracy                          0.93750                     1.0000
+                     Class: BillyButton_flower Class: CarpetHeath_L_F
+Sensitivity                             1.0000                 1.0000
+Specificity                             0.9740                 1.0000
+Pos Pred Value                          0.8824                 1.0000
+Neg Pred Value                          1.0000                 1.0000
+Prevalence                              0.1630                 0.1304
+Detection Rate                          0.1630                 0.1304
+Detection Prevalence                    0.1848                 0.1304
+Balanced Accuracy                       0.9870                 1.0000
+                     Class: Flatweed_flower_yellow Class: HairyButtercupFlowerYellow
+Sensitivity                                0.80000                           0.50000
+Specificity                                0.98851                           0.98889
+Pos Pred Value                             0.80000                           0.50000
+Neg Pred Value                             0.98851                           0.98889
+Prevalence                                 0.05435                           0.02174
+Detection Rate                             0.04348                           0.01087
+Detection Prevalence                       0.05435                           0.02174
+Balanced Accuracy                          0.89425                           0.74444
+                     Class: OWH_flower Class: OWH_leaf_purple Class: StJohn_Worf_flower
+Sensitivity                     0.9500                1.00000                   0.66667
+Specificity                     0.9722                0.98876                   0.96386
+Pos Pred Value                  0.9048                0.75000                   0.66667
+Neg Pred Value                  0.9859                1.00000                   0.96386
+Prevalence                      0.2174                0.03261                   0.09783
+Detection Rate                  0.2065                0.03261                   0.06522
+Detection Prevalence            0.2283                0.04348                   0.09783
+Balanced Accuracy               0.9611                0.99438                   0.81526
+                     Class: Xsub_flower
+Sensitivity                     0.50000
+Specificity                     1.00000
+Pos Pred Value                  1.00000
+Neg Pred Value                  0.96629
+Prevalence                      0.06522
+Detection Rate                  0.03261
+Detection Prevalence            0.03261
+Balanced Accuracy               0.75000
+
+$varImp
+rf variable importance
+
+  variables are sorted by maximum importance across the classes
+  only 20 most important variables shown (out of 2001)
+
+      AlpineGroundsel_flower AlpineSunray_Flower BillyButton_flower CarpetHeath_L_F
+`559`                  3.012               0.000              2.945           1.001
+`553`                  3.184               1.415              3.251           1.682
+`565`                  2.053               0.000              2.351           1.362
+`558`                  1.947               1.417              1.886           0.000
+`514`                  3.993               1.938              3.103           1.417
+`575`                  2.647               1.001              2.449           1.300
+`547`                  2.823               1.495              2.754           0.000
+`562`                  2.971               1.957              2.918           0.000
+`487`                  2.939               2.926              2.462           1.317
+`566`                  2.694               1.452              2.436           0.000
+`570`                  2.679               1.732              3.070           1.001
+`510`                  3.730               2.306              3.511           2.221
+`517`                  3.692               1.993              3.362           1.414
+`568`                  2.432               0.000              2.358           1.337
+`478`                  2.396               3.080              2.382           1.409
+`465`                  2.375               2.895              2.240           1.637
+`451`                  2.222               3.624              2.997           1.807
+`687`                  1.847               1.001              1.825           1.001
+`573`                  2.438               1.001              2.296           1.001
+`486`                  3.055               3.538              2.485           1.897
+      Flatweed_flower_yellow HairyButtercupFlowerYellow OWH_flower OWH_leaf_purple
+`559`                  2.675                     2.5286      4.393           3.203
+`553`                  2.242                     1.3746      4.281           2.869
+`565`                  3.004                     1.4171      4.181           2.732
+`558`                  1.347                     0.0000      4.015           3.028
+`514`                  1.011                     2.2356      2.553           2.121
+`575`                  2.117                     1.6374      3.947           2.765
+`547`                  3.372                     2.2757      3.919           3.022
+`562`                  2.521                     1.9161      3.872           3.068
+`487`                  2.187                     0.5931      3.817           2.868
+`566`                  3.222                     1.4637      3.646           3.379
+`570`                  2.716                     1.0010      3.740           2.921
+`510`                 -0.492                     2.3196      3.430           1.869
+`517`                  1.851                     2.0538      2.938           2.473
+`568`                  2.572                     1.0010      3.660           2.316
+`478`                  1.952                     1.9364      3.659           3.066
+`465`                  1.905                    -1.0010      3.627           2.433
+`451`                  2.275                     0.2000      3.617           1.969
+`687`                  1.146                     1.2669      2.909           1.616
+`573`                  2.689                     1.9541      3.552           2.596
+`486`                  1.924                     1.4321      3.018           2.869
+      StJohn_Worf_flower Xsub_flower
+`559`              2.615     1.79692
+`553`              2.438     0.10702
+`565`              2.665     2.32017
+`558`              3.548     1.50821
+`514`              1.717     2.26894
+`575`              2.409     1.23010
+`547`              2.632     2.98505
+`562`              2.052     0.86756
+`487`              1.445     0.46079
+`566`              3.790     1.12077
+`570`              2.291     0.47909
+`510`              2.181     1.61699
+`517`              2.729     2.72055
+`568`              1.459     1.86294
+`478`              2.843     2.19880
+`465`              2.476     1.93429
+`451`              2.573     2.43421
+`687`              3.558     0.07525
+`573`              2.247     0.13955
+`486`              2.507     2.37086
+

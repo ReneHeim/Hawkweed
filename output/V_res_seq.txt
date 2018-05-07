@@ -1,0 +1,751 @@
+$fit
+Random Forest 
+
+1615 samples
+   4 predictor
+  42 classes: 'AlpineGroundsel_flower', 'AlpineGroundsel_leaf', 'AlpineSunray_Flower', 'AlpineSunray_leaf', 'BillyButton_flower', 'BillyButton_leaf', 'BillyButton_leaf_mainrange', 'BroadLeaveGrass', 'ButtercupFelted_leaf', 'CandleHeath_strez_leaf', 'Carex_spp_leaf', 'CarpetHeath_L_F', 'CoralHeath_leaf', 'Dandelion_leaf', 'Flatweed', 'Flatweed_flower_yellow', 'HairyButtercupFlowerYellow', 'HairyButtercupLeaf', 'MixedGrass', 'MountainCelery_leaf', 'MouseearHW_leaf', 'MouseEarHW_strez_leaf', 'NativeYamDaisy_leaf', 'OHW_leaf', 'OWH_flower', 'OWH_leaf_purple', 'Pale_Everlasting_Strez_leaf', 'PineappleGrass_strez_leaf', 'PricklySnowGrass', 'SheepSorrell_leaf', 'SilverSnowDaisy_topsideLeaf', 'SilverSnowDaisy_undersideLeaf', 'SmallStarPlantain_leaf', 'Snow_Gentian_leaf', 'SpoonDaisy_strez_leaf', 'StJohn_Worf_flower', 'StJohn_Worf_leaf', 'Variable_Eyebright_leaf', 'WhiteCover_leaf', 'WoollyBillyButton_strez_leaf', 'Xsub_flower', 'Xsub_leaf' 
+
+No pre-processing
+Resampling: Bootstrapped (100 reps) 
+Summary of sample sizes: 1615, 1615, 1615, 1615, 1615, 1615, ... 
+Resampling results:
+
+  Accuracy   Kappa    
+  0.4946182  0.4793538
+
+Tuning parameter 'mtry' was held constant at a value of 2
+
+$pred
+  [1] AlpineGroundsel_flower        AlpineSunray_Flower           AlpineGroundsel_flower       
+  [4] AlpineGroundsel_flower        AlpineGroundsel_flower        AlpineGroundsel_flower       
+  [7] AlpineGroundsel_flower        AlpineGroundsel_flower        AlpineGroundsel_leaf         
+ [10] AlpineGroundsel_leaf          AlpineGroundsel_leaf          MouseearHW_leaf              
+ [13] ButtercupFelted_leaf          AlpineGroundsel_leaf          CoralHeath_leaf              
+ [16] SilverSnowDaisy_topsideLeaf   MouseearHW_leaf               Xsub_leaf                    
+ [19] SpoonDaisy_strez_leaf         AlpineGroundsel_leaf          Flatweed_flower_yellow       
+ [22] AlpineSunray_Flower           AlpineSunray_Flower           AlpineSunray_Flower          
+ [25] AlpineSunray_Flower           AlpineSunray_Flower           AlpineSunray_Flower          
+ [28] AlpineSunray_Flower           AlpineSunray_Flower           AlpineSunray_Flower          
+ [31] AlpineSunray_Flower           AlpineSunray_Flower           AlpineSunray_leaf            
+ [34] AlpineSunray_leaf             Pale_Everlasting_Strez_leaf   AlpineSunray_leaf            
+ [37] AlpineSunray_leaf             AlpineSunray_leaf             SilverSnowDaisy_undersideLeaf
+ [40] SilverSnowDaisy_undersideLeaf AlpineSunray_leaf             AlpineSunray_leaf            
+ [43] BillyButton_flower            BillyButton_flower            BillyButton_flower           
+ [46] BillyButton_flower            BillyButton_flower            BillyButton_flower           
+ [49] BillyButton_flower            BillyButton_flower            StJohn_Worf_flower           
+ [52] BillyButton_flower            BillyButton_flower            BillyButton_flower           
+ [55] BillyButton_flower            BillyButton_flower            BillyButton_flower           
+ [58] StJohn_Worf_leaf              BillyButton_leaf              BillyButton_leaf             
+ [61] BillyButton_leaf              Dandelion_leaf                BillyButton_leaf             
+ [64] BillyButton_leaf              BillyButton_leaf              SheepSorrell_leaf            
+ [67] BillyButton_leaf              BillyButton_leaf              BillyButton_leaf             
+ [70] BillyButton_leaf              BillyButton_leaf              BillyButton_leaf             
+ [73] Dandelion_leaf                SheepSorrell_leaf             BillyButton_leaf             
+ [76] WhiteCover_leaf               BillyButton_leaf_mainrange    BillyButton_leaf             
+ [79] BillyButton_leaf              MouseEarHW_strez_leaf         WoollyBillyButton_strez_leaf 
+ [82] Dandelion_leaf                BillyButton_leaf              BillyButton_leaf             
+ [85] BillyButton_leaf              BillyButton_leaf              BillyButton_leaf             
+ [88] BillyButton_leaf              BillyButton_leaf              BillyButton_leaf             
+ [91] WhiteCover_leaf               BillyButton_leaf              MouseEarHW_strez_leaf        
+ [94] BillyButton_leaf_mainrange    BillyButton_leaf              BillyButton_leaf             
+ [97] BillyButton_leaf              Dandelion_leaf                WhiteCover_leaf              
+[100] BillyButton_leaf_mainrange    NativeYamDaisy_leaf           BillyButton_leaf             
+[103] PineappleGrass_strez_leaf     BillyButton_leaf              BillyButton_leaf_mainrange   
+[106] WhiteCover_leaf               BillyButton_leaf_mainrange    BillyButton_leaf_mainrange   
+[109] BroadLeaveGrass               BroadLeaveGrass               StJohn_Worf_leaf             
+[112] BroadLeaveGrass               BroadLeaveGrass               BroadLeaveGrass              
+[115] BroadLeaveGrass               Dandelion_leaf                BillyButton_leaf             
+[118] BroadLeaveGrass               BroadLeaveGrass               BroadLeaveGrass              
+[121] BroadLeaveGrass               ButtercupFelted_leaf          ButtercupFelted_leaf         
+[124] ButtercupFelted_leaf          ButtercupFelted_leaf          ButtercupFelted_leaf         
+[127] SpoonDaisy_strez_leaf         SpoonDaisy_strez_leaf         ButtercupFelted_leaf         
+[130] ButtercupFelted_leaf          ButtercupFelted_leaf          ButtercupFelted_leaf         
+[133] MouseearHW_leaf               SpoonDaisy_strez_leaf         ButtercupFelted_leaf         
+[136] AlpineGroundsel_leaf          CoralHeath_leaf               MouseearHW_leaf              
+[139] StJohn_Worf_leaf              MouseearHW_leaf               BillyButton_leaf_mainrange   
+[142] AlpineGroundsel_leaf          AlpineGroundsel_leaf          MouseearHW_leaf              
+[145] NativeYamDaisy_leaf           CandleHeath_strez_leaf        NativeYamDaisy_leaf          
+[148] WhiteCover_leaf               ButtercupFelted_leaf          SilverSnowDaisy_topsideLeaf  
+[151] OHW_leaf                      CandleHeath_strez_leaf        Carex_spp_leaf               
+[154] Carex_spp_leaf                Carex_spp_leaf                Carex_spp_leaf               
+[157] Carex_spp_leaf                Carex_spp_leaf                Carex_spp_leaf               
+[160] Carex_spp_leaf                Carex_spp_leaf                Carex_spp_leaf               
+[163] MouseearHW_leaf               Carex_spp_leaf                CarpetHeath_L_F              
+[166] CarpetHeath_L_F               CarpetHeath_L_F               CarpetHeath_L_F              
+[169] CarpetHeath_L_F               CarpetHeath_L_F               CarpetHeath_L_F              
+[172] CarpetHeath_L_F               CarpetHeath_L_F               CarpetHeath_L_F              
+[175] CarpetHeath_L_F               CarpetHeath_L_F               Variable_Eyebright_leaf      
+[178] CoralHeath_leaf               MouseearHW_leaf               SilverSnowDaisy_topsideLeaf  
+[181] SpoonDaisy_strez_leaf         CoralHeath_leaf               OHW_leaf                     
+[184] CoralHeath_leaf               CoralHeath_leaf               CoralHeath_leaf              
+[187] SpoonDaisy_strez_leaf         SilverSnowDaisy_topsideLeaf   SpoonDaisy_strez_leaf        
+[190] SilverSnowDaisy_topsideLeaf   BillyButton_leaf_mainrange    Dandelion_leaf               
+[193] BillyButton_leaf              BillyButton_leaf              BillyButton_leaf             
+[196] StJohn_Worf_leaf              BillyButton_leaf              BillyButton_leaf_mainrange   
+[199] Dandelion_leaf                Variable_Eyebright_leaf       Dandelion_leaf               
+[202] Dandelion_leaf                SheepSorrell_leaf             MouseEarHW_strez_leaf        
+[205] BillyButton_leaf              BillyButton_leaf              SpoonDaisy_strez_leaf        
+[208] Flatweed                      AlpineGroundsel_flower        Flatweed_flower_yellow       
+[211] Flatweed_flower_yellow        Flatweed_flower_yellow        AlpineSunray_Flower          
+[214] AlpineGroundsel_flower        AlpineSunray_Flower           HairyButtercupLeaf           
+[217] HairyButtercupLeaf            HairyButtercupLeaf            NativeYamDaisy_leaf          
+[220] SmallStarPlantain_leaf        PricklySnowGrass              PricklySnowGrass             
+[223] MixedGrass                    PricklySnowGrass              MixedGrass                   
+[226] CarpetHeath_L_F               MixedGrass                    MixedGrass                   
+[229] MixedGrass                    MixedGrass                    Carex_spp_leaf               
+[232] MixedGrass                    SpoonDaisy_strez_leaf         MountainCelery_leaf          
+[235] WhiteCover_leaf               MountainCelery_leaf           AlpineGroundsel_leaf         
+[238] AlpineGroundsel_leaf          MountainCelery_leaf           SpoonDaisy_strez_leaf        
+[241] NativeYamDaisy_leaf           MountainCelery_leaf           MountainCelery_leaf          
+[244] AlpineGroundsel_leaf          MouseEarHW_strez_leaf         HairyButtercupLeaf           
+[247] Dandelion_leaf                MouseearHW_leaf               MouseearHW_leaf              
+[250] MouseearHW_leaf               MouseearHW_leaf               MouseearHW_leaf              
+[253] MouseearHW_leaf               MouseearHW_leaf               MouseearHW_leaf              
+[256] MouseearHW_leaf               MouseearHW_leaf               MouseearHW_leaf              
+[259] MouseearHW_leaf               MouseearHW_leaf               MouseearHW_leaf              
+[262] MouseearHW_leaf               MouseearHW_leaf               MouseearHW_leaf              
+[265] MouseearHW_leaf               MouseearHW_leaf               MouseearHW_leaf              
+[268] MouseearHW_leaf               MouseEarHW_strez_leaf         WhiteCover_leaf              
+[271] MouseEarHW_strez_leaf         PineappleGrass_strez_leaf     WhiteCover_leaf              
+[274] MouseEarHW_strez_leaf         Flatweed                      WoollyBillyButton_strez_leaf 
+[277] PineappleGrass_strez_leaf     WhiteCover_leaf               WhiteCover_leaf              
+[280] CandleHeath_strez_leaf        NativeYamDaisy_leaf           MountainCelery_leaf          
+[283] NativeYamDaisy_leaf           MountainCelery_leaf           NativeYamDaisy_leaf          
+[286] NativeYamDaisy_leaf           BillyButton_leaf_mainrange    StJohn_Worf_leaf             
+[289] NativeYamDaisy_leaf           NativeYamDaisy_leaf           NativeYamDaisy_leaf          
+[292] NativeYamDaisy_leaf           NativeYamDaisy_leaf           SpoonDaisy_strez_leaf        
+[295] ButtercupFelted_leaf          AlpineGroundsel_leaf          OHW_leaf                     
+[298] PineappleGrass_strez_leaf     PineappleGrass_strez_leaf     OHW_leaf                     
+[301] OHW_leaf                      BillyButton_leaf              WhiteCover_leaf              
+[304] OHW_leaf                      BillyButton_leaf              OHW_leaf                     
+[307] BroadLeaveGrass               BroadLeaveGrass               OHW_leaf                     
+[310] BroadLeaveGrass               BroadLeaveGrass               OHW_leaf                     
+[313] OHW_leaf                      OHW_leaf                      OHW_leaf                     
+[316] Flatweed_flower_yellow        OWH_flower                    OWH_flower                   
+[319] OWH_flower                    OWH_flower                    OWH_flower                   
+[322] OWH_flower                    OWH_flower                    OWH_flower                   
+[325] OWH_flower                    OWH_flower                    OWH_flower                   
+[328] OWH_flower                    OWH_flower                    OWH_flower                   
+[331] OWH_flower                    OWH_flower                    OWH_flower                   
+[334] OWH_flower                    OWH_flower                    OWH_flower                   
+[337] OWH_flower                    CoralHeath_leaf               Pale_Everlasting_Strez_leaf  
+[340] Pale_Everlasting_Strez_leaf   Pale_Everlasting_Strez_leaf   Pale_Everlasting_Strez_leaf  
+[343] Pale_Everlasting_Strez_leaf   Pale_Everlasting_Strez_leaf   Pale_Everlasting_Strez_leaf  
+[346] Pale_Everlasting_Strez_leaf   WoollyBillyButton_strez_leaf  Pale_Everlasting_Strez_leaf  
+[349] Pale_Everlasting_Strez_leaf   PineappleGrass_strez_leaf     AlpineSunray_Flower          
+[352] WoollyBillyButton_strez_leaf  PineappleGrass_strez_leaf     PineappleGrass_strez_leaf    
+[355] AlpineSunray_leaf             SilverSnowDaisy_undersideLeaf SilverSnowDaisy_undersideLeaf
+[358] AlpineGroundsel_leaf          SilverSnowDaisy_undersideLeaf StJohn_Worf_flower           
+[361] PineappleGrass_strez_leaf     PricklySnowGrass              MixedGrass                   
+[364] PricklySnowGrass              PricklySnowGrass              PricklySnowGrass             
+[367] MixedGrass                    PricklySnowGrass              PricklySnowGrass             
+[370] Snow_Gentian_leaf             MixedGrass                    SheepSorrell_leaf            
+[373] SheepSorrell_leaf             SheepSorrell_leaf             StJohn_Worf_leaf             
+[376] Dandelion_leaf                Pale_Everlasting_Strez_leaf   SheepSorrell_leaf            
+[379] OHW_leaf                      BroadLeaveGrass               BillyButton_leaf             
+[382] SheepSorrell_leaf             StJohn_Worf_leaf              SheepSorrell_leaf            
+[385] BillyButton_leaf_mainrange    SheepSorrell_leaf             SilverSnowDaisy_topsideLeaf  
+[388] SilverSnowDaisy_topsideLeaf   CoralHeath_leaf               SilverSnowDaisy_topsideLeaf  
+[391] CoralHeath_leaf               SilverSnowDaisy_topsideLeaf   SilverSnowDaisy_topsideLeaf  
+[394] SilverSnowDaisy_topsideLeaf   CoralHeath_leaf               SilverSnowDaisy_topsideLeaf  
+[397] SmallStarPlantain_leaf        SheepSorrell_leaf             SilverSnowDaisy_topsideLeaf  
+[400] SilverSnowDaisy_topsideLeaf   OHW_leaf                      SilverSnowDaisy_undersideLeaf
+[403] SilverSnowDaisy_undersideLeaf SilverSnowDaisy_undersideLeaf SilverSnowDaisy_undersideLeaf
+[406] SilverSnowDaisy_undersideLeaf SilverSnowDaisy_undersideLeaf SilverSnowDaisy_undersideLeaf
+[409] SilverSnowDaisy_undersideLeaf SilverSnowDaisy_undersideLeaf SilverSnowDaisy_undersideLeaf
+[412] SilverSnowDaisy_undersideLeaf SmallStarPlantain_leaf        SmallStarPlantain_leaf       
+[415] SmallStarPlantain_leaf        SpoonDaisy_strez_leaf         SilverSnowDaisy_topsideLeaf  
+[418] CandleHeath_strez_leaf        SpoonDaisy_strez_leaf         MountainCelery_leaf          
+[421] SpoonDaisy_strez_leaf         AlpineGroundsel_leaf          Snow_Gentian_leaf            
+[424] Snow_Gentian_leaf             Snow_Gentian_leaf             Snow_Gentian_leaf            
+[427] Snow_Gentian_leaf             Snow_Gentian_leaf             Snow_Gentian_leaf            
+[430] Snow_Gentian_leaf             Snow_Gentian_leaf             Snow_Gentian_leaf            
+[433] Snow_Gentian_leaf             Snow_Gentian_leaf             MouseEarHW_strez_leaf        
+[436] SpoonDaisy_strez_leaf         SpoonDaisy_strez_leaf         SpoonDaisy_strez_leaf        
+[439] SpoonDaisy_strez_leaf         SpoonDaisy_strez_leaf         SpoonDaisy_strez_leaf        
+[442] SpoonDaisy_strez_leaf         SmallStarPlantain_leaf        SpoonDaisy_strez_leaf        
+[445] SpoonDaisy_strez_leaf         SilverSnowDaisy_topsideLeaf   SpoonDaisy_strez_leaf        
+[448] ButtercupFelted_leaf          SpoonDaisy_strez_leaf         SilverSnowDaisy_undersideLeaf
+[451] StJohn_Worf_flower            SilverSnowDaisy_undersideLeaf StJohn_Worf_flower           
+[454] BillyButton_flower            Flatweed_flower_yellow        StJohn_Worf_flower           
+[457] AlpineSunray_leaf             SilverSnowDaisy_undersideLeaf MouseEarHW_strez_leaf        
+[460] MouseearHW_leaf               Variable_Eyebright_leaf       WoollyBillyButton_strez_leaf 
+[463] SheepSorrell_leaf             BroadLeaveGrass               SheepSorrell_leaf            
+[466] WoollyBillyButton_strez_leaf  WoollyBillyButton_strez_leaf  PineappleGrass_strez_leaf    
+[469] CandleHeath_strez_leaf        OHW_leaf                      CandleHeath_strez_leaf       
+[472] BillyButton_leaf              CoralHeath_leaf               CandleHeath_strez_leaf       
+[475] PineappleGrass_strez_leaf     SheepSorrell_leaf             CandleHeath_strez_leaf       
+[478] MouseEarHW_strez_leaf         BillyButton_leaf_mainrange    WhiteCover_leaf              
+[481] WhiteCover_leaf               NativeYamDaisy_leaf           BillyButton_leaf_mainrange   
+[484] WhiteCover_leaf               WoollyBillyButton_strez_leaf  Dandelion_leaf               
+[487] MouseEarHW_strez_leaf         WhiteCover_leaf               WhiteCover_leaf              
+[490] WhiteCover_leaf               OHW_leaf                      WhiteCover_leaf              
+[493] WhiteCover_leaf               WhiteCover_leaf               PineappleGrass_strez_leaf    
+[496] MouseEarHW_strez_leaf         BillyButton_leaf_mainrange    CandleHeath_strez_leaf       
+[499] StJohn_Worf_leaf              CandleHeath_strez_leaf        StJohn_Worf_leaf             
+[502] WoollyBillyButton_strez_leaf  WoollyBillyButton_strez_leaf  WoollyBillyButton_strez_leaf 
+[505] PineappleGrass_strez_leaf     Pale_Everlasting_Strez_leaf   WoollyBillyButton_strez_leaf 
+[508] NativeYamDaisy_leaf           OWH_flower                    AlpineSunray_Flower          
+[511] OWH_flower                    BillyButton_flower            OWH_flower                   
+[514] StJohn_Worf_flower            Variable_Eyebright_leaf       MountainCelery_leaf          
+[517] OHW_leaf                      WhiteCover_leaf               OHW_leaf                     
+42 Levels: AlpineGroundsel_flower AlpineGroundsel_leaf AlpineSunray_Flower ... Xsub_leaf
+
+$confusion
+Confusion Matrix and Statistics
+
+                               Reference
+Prediction                      AlpineGroundsel_flower AlpineGroundsel_leaf AlpineSunray_Flower
+  AlpineGroundsel_flower                             7                    0                   0
+  AlpineGroundsel_leaf                               0                    5                   0
+  AlpineSunray_Flower                                1                    0                  11
+  AlpineSunray_leaf                                  0                    0                   0
+  BillyButton_flower                                 0                    0                   0
+  BillyButton_leaf                                   0                    0                   0
+  BillyButton_leaf_mainrange                         0                    0                   0
+  BroadLeaveGrass                                    0                    0                   0
+  ButtercupFelted_leaf                               0                    1                   0
+  CandleHeath_strez_leaf                             0                    0                   0
+  Carex_spp_leaf                                     0                    0                   0
+  CarpetHeath_L_F                                    0                    0                   0
+  CoralHeath_leaf                                    0                    1                   0
+  Dandelion_leaf                                     0                    0                   0
+  Flatweed                                           0                    0                   0
+  Flatweed_flower_yellow                             0                    0                   1
+  HairyButtercupFlowerYellow                         0                    0                   0
+  HairyButtercupLeaf                                 0                    0                   0
+  MixedGrass                                         0                    0                   0
+  MountainCelery_leaf                                0                    0                   0
+  MouseearHW_leaf                                    0                    2                   0
+  MouseEarHW_strez_leaf                              0                    0                   0
+  NativeYamDaisy_leaf                                0                    0                   0
+                               Reference
+Prediction                      AlpineSunray_leaf BillyButton_flower BillyButton_leaf
+  AlpineGroundsel_flower                        0                  0                0
+  AlpineGroundsel_leaf                          0                  0                0
+  AlpineSunray_Flower                           0                  0                0
+  AlpineSunray_leaf                             7                  0                0
+  BillyButton_flower                            0                 14                0
+  BillyButton_leaf                              0                  0               22
+  BillyButton_leaf_mainrange                    0                  0                1
+  BroadLeaveGrass                               0                  0                0
+  ButtercupFelted_leaf                          0                  0                0
+  CandleHeath_strez_leaf                        0                  0                0
+  Carex_spp_leaf                                0                  0                0
+  CarpetHeath_L_F                               0                  0                0
+  CoralHeath_leaf                               0                  0                0
+  Dandelion_leaf                                0                  0                3
+  Flatweed                                      0                  0                0
+  Flatweed_flower_yellow                        0                  0                0
+  HairyButtercupFlowerYellow                    0                  0                0
+  HairyButtercupLeaf                            0                  0                0
+  MixedGrass                                    0                  0                0
+  MountainCelery_leaf                           0                  0                0
+  MouseearHW_leaf                               0                  0                0
+  MouseEarHW_strez_leaf                         0                  0                1
+  NativeYamDaisy_leaf                           0                  0                0
+                               Reference
+Prediction                      BillyButton_leaf_mainrange BroadLeaveGrass ButtercupFelted_leaf
+  AlpineGroundsel_flower                                 0               0                    0
+  AlpineGroundsel_leaf                                   0               0                    0
+  AlpineSunray_Flower                                    0               0                    0
+  AlpineSunray_leaf                                      0               0                    0
+  BillyButton_flower                                     0               0                    0
+  BillyButton_leaf                                       7               1                    0
+  BillyButton_leaf_mainrange                             5               0                    0
+  BroadLeaveGrass                                        0              10                    0
+  ButtercupFelted_leaf                                   0               0                   10
+  CandleHeath_strez_leaf                                 0               0                    0
+  Carex_spp_leaf                                         0               0                    0
+  CarpetHeath_L_F                                        0               0                    0
+  CoralHeath_leaf                                        0               0                    0
+  Dandelion_leaf                                         1               1                    0
+  Flatweed                                               0               0                    0
+  Flatweed_flower_yellow                                 0               0                    0
+  HairyButtercupFlowerYellow                             0               0                    0
+  HairyButtercupLeaf                                     0               0                    0
+  MixedGrass                                             0               0                    0
+  MountainCelery_leaf                                    0               0                    0
+  MouseearHW_leaf                                        0               0                    1
+  MouseEarHW_strez_leaf                                  1               0                    0
+  NativeYamDaisy_leaf                                    1               0                    0
+                               Reference
+Prediction                      CandleHeath_strez_leaf Carex_spp_leaf CarpetHeath_L_F CoralHeath_leaf
+  AlpineGroundsel_flower                             0              0               0               0
+  AlpineGroundsel_leaf                               3              0               0               0
+  AlpineSunray_Flower                                0              0               0               0
+  AlpineSunray_leaf                                  0              0               0               0
+  BillyButton_flower                                 0              0               0               0
+  BillyButton_leaf                                   0              0               0               0
+  BillyButton_leaf_mainrange                         1              0               0               0
+  BroadLeaveGrass                                    0              0               0               0
+  ButtercupFelted_leaf                               1              0               0               0
+  CandleHeath_strez_leaf                             2              0               0               0
+  Carex_spp_leaf                                     0             11               0               0
+  CarpetHeath_L_F                                    0              0              12               0
+  CoralHeath_leaf                                    1              0               0               5
+  Dandelion_leaf                                     0              0               0               0
+  Flatweed                                           0              0               0               0
+  Flatweed_flower_yellow                             0              0               0               0
+  HairyButtercupFlowerYellow                         0              0               0               0
+  HairyButtercupLeaf                                 0              0               0               0
+  MixedGrass                                         0              0               0               0
+  MountainCelery_leaf                                0              0               0               0
+  MouseearHW_leaf                                    3              1               0               1
+  MouseEarHW_strez_leaf                              0              0               0               0
+  NativeYamDaisy_leaf                                2              0               0               0
+                               Reference
+Prediction                      Dandelion_leaf Flatweed Flatweed_flower_yellow
+  AlpineGroundsel_flower                     0        0                      1
+  AlpineGroundsel_leaf                       0        0                      0
+  AlpineSunray_Flower                        0        0                      1
+  AlpineSunray_leaf                          0        0                      0
+  BillyButton_flower                         0        0                      0
+  BillyButton_leaf                           5        1                      0
+  BillyButton_leaf_mainrange                 2        0                      0
+  BroadLeaveGrass                            0        0                      0
+  ButtercupFelted_leaf                       0        0                      0
+  CandleHeath_strez_leaf                     0        0                      0
+  Carex_spp_leaf                             0        0                      0
+  CarpetHeath_L_F                            0        0                      0
+  CoralHeath_leaf                            0        0                      0
+  Dandelion_leaf                             4        0                      0
+  Flatweed                                   0        1                      0
+  Flatweed_flower_yellow                     0        0                      3
+  HairyButtercupFlowerYellow                 0        0                      0
+  HairyButtercupLeaf                         0        0                      0
+  MixedGrass                                 0        0                      0
+  MountainCelery_leaf                        0        0                      0
+  MouseearHW_leaf                            0        0                      0
+  MouseEarHW_strez_leaf                      1        0                      0
+  NativeYamDaisy_leaf                        0        0                      0
+                               Reference
+Prediction                      HairyButtercupFlowerYellow HairyButtercupLeaf MixedGrass
+  AlpineGroundsel_flower                                 1                  0          0
+  AlpineGroundsel_leaf                                   0                  0          0
+  AlpineSunray_Flower                                    1                  0          0
+  AlpineSunray_leaf                                      0                  0          0
+  BillyButton_flower                                     0                  0          0
+  BillyButton_leaf                                       0                  0          0
+  BillyButton_leaf_mainrange                             0                  0          0
+  BroadLeaveGrass                                        0                  0          0
+  ButtercupFelted_leaf                                   0                  0          0
+  CandleHeath_strez_leaf                                 0                  0          0
+  Carex_spp_leaf                                         0                  0          1
+  CarpetHeath_L_F                                        0                  0          1
+  CoralHeath_leaf                                        0                  0          0
+  Dandelion_leaf                                         0                  0          0
+  Flatweed                                               0                  0          0
+  Flatweed_flower_yellow                                 0                  0          0
+  HairyButtercupFlowerYellow                             0                  0          0
+  HairyButtercupLeaf                                     0                  3          0
+  MixedGrass                                             0                  0          7
+  MountainCelery_leaf                                    0                  0          0
+  MouseearHW_leaf                                        0                  0          0
+  MouseEarHW_strez_leaf                                  0                  0          0
+  NativeYamDaisy_leaf                                    0                  1          0
+                               Reference
+Prediction                      MountainCelery_leaf MouseearHW_leaf MouseEarHW_strez_leaf
+  AlpineGroundsel_flower                          0               0                     0
+  AlpineGroundsel_leaf                            3               0                     0
+  AlpineSunray_Flower                             0               0                     0
+  AlpineSunray_leaf                               0               0                     0
+  BillyButton_flower                              0               0                     0
+  BillyButton_leaf                                0               0                     0
+  BillyButton_leaf_mainrange                      0               0                     0
+  BroadLeaveGrass                                 0               0                     0
+  ButtercupFelted_leaf                            0               0                     0
+  CandleHeath_strez_leaf                          0               0                     0
+  Carex_spp_leaf                                  0               0                     0
+  CarpetHeath_L_F                                 0               0                     0
+  CoralHeath_leaf                                 0               0                     0
+  Dandelion_leaf                                  0               1                     0
+  Flatweed                                        0               0                     1
+  Flatweed_flower_yellow                          0               0                     0
+  HairyButtercupFlowerYellow                      0               0                     0
+  HairyButtercupLeaf                              0               1                     0
+  MixedGrass                                      0               0                     0
+  MountainCelery_leaf                             5               0                     0
+  MouseearHW_leaf                                 0              21                     0
+  MouseEarHW_strez_leaf                           0               1                     3
+  NativeYamDaisy_leaf                             1               0                     0
+                               Reference
+Prediction                      NativeYamDaisy_leaf OHW_leaf OWH_flower OWH_leaf_purple
+  AlpineGroundsel_flower                          0        0          0               0
+  AlpineGroundsel_leaf                            0        1          0               0
+  AlpineSunray_Flower                             0        0          0               0
+  AlpineSunray_leaf                               0        0          0               0
+  BillyButton_flower                              0        0          0               0
+  BillyButton_leaf                                0        2          0               0
+  BillyButton_leaf_mainrange                      1        0          0               0
+  BroadLeaveGrass                                 0        4          0               0
+  ButtercupFelted_leaf                            0        1          0               0
+  CandleHeath_strez_leaf                          1        0          0               0
+  Carex_spp_leaf                                  0        0          0               0
+  CarpetHeath_L_F                                 0        0          0               0
+  CoralHeath_leaf                                 0        0          0               1
+  Dandelion_leaf                                  0        0          0               0
+  Flatweed                                        0        0          0               0
+  Flatweed_flower_yellow                          0        0          1               0
+  HairyButtercupFlowerYellow                      0        0          0               0
+  HairyButtercupLeaf                              0        0          0               0
+  MixedGrass                                      0        0          0               0
+  MountainCelery_leaf                             2        0          0               0
+  MouseearHW_leaf                                 0        0          0               0
+  MouseEarHW_strez_leaf                           0        0          0               0
+  NativeYamDaisy_leaf                             9        0          0               0
+                               Reference
+Prediction                      Pale_Everlasting_Strez_leaf PineappleGrass_strez_leaf PricklySnowGrass
+  AlpineGroundsel_flower                                  0                         0                0
+  AlpineGroundsel_leaf                                    0                         1                0
+  AlpineSunray_Flower                                     0                         1                0
+  AlpineSunray_leaf                                       0                         1                0
+  BillyButton_flower                                      0                         0                0
+  BillyButton_leaf                                        0                         0                0
+  BillyButton_leaf_mainrange                              0                         0                0
+  BroadLeaveGrass                                         0                         0                0
+  ButtercupFelted_leaf                                    0                         0                0
+  CandleHeath_strez_leaf                                  0                         0                0
+  Carex_spp_leaf                                          0                         0                0
+  CarpetHeath_L_F                                         0                         0                0
+  CoralHeath_leaf                                         0                         0                0
+  Dandelion_leaf                                          0                         0                0
+  Flatweed                                                0                         0                0
+  Flatweed_flower_yellow                                  0                         0                0
+  HairyButtercupFlowerYellow                              0                         0                0
+  HairyButtercupLeaf                                      0                         0                0
+  MixedGrass                                              0                         0                3
+  MountainCelery_leaf                                     0                         0                0
+  MouseearHW_leaf                                         0                         0                0
+  MouseEarHW_strez_leaf                                   0                         0                0
+  NativeYamDaisy_leaf                                     0                         0                0
+                               Reference
+Prediction                      SheepSorrell_leaf SilverSnowDaisy_topsideLeaf
+  AlpineGroundsel_flower                        0                           0
+  AlpineGroundsel_leaf                          0                           0
+  AlpineSunray_Flower                           0                           0
+  AlpineSunray_leaf                             0                           0
+  BillyButton_flower                            0                           0
+  BillyButton_leaf                              1                           0
+  BillyButton_leaf_mainrange                    1                           0
+  BroadLeaveGrass                               1                           0
+  ButtercupFelted_leaf                          0                           0
+  CandleHeath_strez_leaf                        0                           0
+  Carex_spp_leaf                                0                           0
+  CarpetHeath_L_F                               0                           0
+  CoralHeath_leaf                               0                           3
+  Dandelion_leaf                                1                           0
+  Flatweed                                      0                           0
+  Flatweed_flower_yellow                        0                           0
+  HairyButtercupFlowerYellow                    0                           0
+  HairyButtercupLeaf                            0                           0
+  MixedGrass                                    0                           0
+  MountainCelery_leaf                           0                           0
+  MouseearHW_leaf                               0                           0
+  MouseEarHW_strez_leaf                         0                           0
+  NativeYamDaisy_leaf                           0                           0
+                               Reference
+Prediction                      SilverSnowDaisy_undersideLeaf SmallStarPlantain_leaf Snow_Gentian_leaf
+  AlpineGroundsel_flower                                    0                      0                 0
+  AlpineGroundsel_leaf                                      0                      1                 0
+  AlpineSunray_Flower                                       0                      0                 0
+  AlpineSunray_leaf                                         0                      0                 0
+  BillyButton_flower                                        0                      0                 0
+  BillyButton_leaf                                          0                      0                 0
+  BillyButton_leaf_mainrange                                0                      0                 0
+  BroadLeaveGrass                                           0                      0                 0
+  ButtercupFelted_leaf                                      0                      0                 0
+  CandleHeath_strez_leaf                                    0                      1                 0
+  Carex_spp_leaf                                            0                      0                 0
+  CarpetHeath_L_F                                           0                      0                 0
+  CoralHeath_leaf                                           0                      0                 0
+  Dandelion_leaf                                            0                      0                 0
+  Flatweed                                                  0                      0                 0
+  Flatweed_flower_yellow                                    0                      0                 0
+  HairyButtercupFlowerYellow                                0                      0                 0
+  HairyButtercupLeaf                                        0                      0                 0
+  MixedGrass                                                0                      0                 0
+  MountainCelery_leaf                                       0                      1                 0
+  MouseearHW_leaf                                           0                      0                 0
+  MouseEarHW_strez_leaf                                     0                      0                 0
+  NativeYamDaisy_leaf                                       0                      0                 0
+                               Reference
+Prediction                      SpoonDaisy_strez_leaf StJohn_Worf_flower StJohn_Worf_leaf
+  AlpineGroundsel_flower                            0                  0                0
+  AlpineGroundsel_leaf                              0                  0                0
+  AlpineSunray_Flower                               0                  0                0
+  AlpineSunray_leaf                                 0                  1                0
+  BillyButton_flower                                0                  1                0
+  BillyButton_leaf                                  0                  0                0
+  BillyButton_leaf_mainrange                        0                  0                0
+  BroadLeaveGrass                                   0                  0                1
+  ButtercupFelted_leaf                              1                  0                0
+  CandleHeath_strez_leaf                            0                  0                0
+  Carex_spp_leaf                                    0                  0                0
+  CarpetHeath_L_F                                   0                  0                0
+  CoralHeath_leaf                                   0                  0                0
+  Dandelion_leaf                                    0                  0                0
+  Flatweed                                          0                  0                0
+  Flatweed_flower_yellow                            0                  1                0
+  HairyButtercupFlowerYellow                        0                  0                0
+  HairyButtercupLeaf                                0                  0                0
+  MixedGrass                                        0                  0                0
+  MountainCelery_leaf                               0                  0                0
+  MouseearHW_leaf                                   0                  0                1
+  MouseEarHW_strez_leaf                             1                  0                1
+  NativeYamDaisy_leaf                               0                  0                0
+                               Reference
+Prediction                      Variable_Eyebright_leaf WhiteCover_leaf WoollyBillyButton_strez_leaf
+  AlpineGroundsel_flower                              0               0                            0
+  AlpineGroundsel_leaf                                0               0                            0
+  AlpineSunray_Flower                                 0               0                            0
+  AlpineSunray_leaf                                   0               0                            0
+  BillyButton_flower                                  0               0                            0
+  BillyButton_leaf                                    1               0                            0
+  BillyButton_leaf_mainrange                          0               2                            1
+  BroadLeaveGrass                                     0               0                            0
+  ButtercupFelted_leaf                                0               0                            0
+  CandleHeath_strez_leaf                              4               0                            2
+  Carex_spp_leaf                                      0               0                            0
+  CarpetHeath_L_F                                     0               0                            0
+  CoralHeath_leaf                                     1               0                            0
+  Dandelion_leaf                                      0               1                            0
+  Flatweed                                            0               0                            0
+  Flatweed_flower_yellow                              0               0                            0
+  HairyButtercupFlowerYellow                          0               0                            0
+  HairyButtercupLeaf                                  0               0                            0
+  MixedGrass                                          0               0                            0
+  MountainCelery_leaf                                 0               0                            0
+  MouseearHW_leaf                                     0               0                            0
+  MouseEarHW_strez_leaf                               1               1                            1
+  NativeYamDaisy_leaf                                 0               1                            1
+                               Reference
+Prediction                      Xsub_flower Xsub_leaf
+  AlpineGroundsel_flower                  0         0
+  AlpineGroundsel_leaf                    0         0
+  AlpineSunray_Flower                     1         0
+  AlpineSunray_leaf                       0         0
+  BillyButton_flower                      1         0
+  BillyButton_leaf                        0         0
+  BillyButton_leaf_mainrange              0         0
+  BroadLeaveGrass                         0         0
+  ButtercupFelted_leaf                    0         0
+  CandleHeath_strez_leaf                  0         0
+  Carex_spp_leaf                          0         0
+  CarpetHeath_L_F                         0         0
+  CoralHeath_leaf                         0         0
+  Dandelion_leaf                          0         0
+  Flatweed                                0         0
+  Flatweed_flower_yellow                  0         0
+  HairyButtercupFlowerYellow              0         0
+  HairyButtercupLeaf                      0         0
+  MixedGrass                              0         0
+  MountainCelery_leaf                     0         1
+  MouseearHW_leaf                         0         0
+  MouseEarHW_strez_leaf                   0         0
+  NativeYamDaisy_leaf                     0         0
+ [ reached getOption("max.print") -- omitted 19 rows ]
+
+Overall Statistics
+                                          
+               Accuracy : 0.5684          
+                 95% CI : (0.5245, 0.6115)
+    No Information Rate : 0.0617          
+    P-Value [Acc > NIR] : < 2.2e-16       
+                                          
+                  Kappa : 0.555           
+ Mcnemar's Test P-Value : NA              
+
+Statistics by Class:
+
+                     Class: AlpineGroundsel_flower Class: AlpineGroundsel_leaf
+Sensitivity                                0.87500                    0.416667
+Specificity                                0.99609                    0.982249
+Pos Pred Value                             0.77778                    0.357143
+Neg Pred Value                             0.99804                    0.986139
+Prevalence                                 0.01541                    0.023121
+Detection Rate                             0.01349                    0.009634
+Detection Prevalence                       0.01734                    0.026975
+Balanced Accuracy                          0.93554                    0.699458
+                     Class: AlpineSunray_Flower Class: AlpineSunray_leaf Class: BillyButton_flower
+Sensitivity                             0.91667                  0.70000                   0.93333
+Specificity                             0.99014                  0.99607                   0.99603
+Pos Pred Value                          0.68750                  0.77778                   0.87500
+Neg Pred Value                          0.99801                  0.99412                   0.99801
+Prevalence                              0.02312                  0.01927                   0.02890
+Detection Rate                          0.02119                  0.01349                   0.02697
+Detection Prevalence                    0.03083                  0.01734                   0.03083
+Balanced Accuracy                       0.95340                  0.84804                   0.96468
+                     Class: BillyButton_leaf Class: BillyButton_leaf_mainrange Class: BroadLeaveGrass
+Sensitivity                          0.68750                          0.263158                0.76923
+Specificity                          0.96304                          0.982000                0.98814
+Pos Pred Value                       0.55000                          0.357143                0.62500
+Neg Pred Value                       0.97912                          0.972277                0.99404
+Prevalence                           0.06166                          0.036609                0.02505
+Detection Rate                       0.04239                          0.009634                0.01927
+Detection Prevalence                 0.07707                          0.026975                0.03083
+Balanced Accuracy                    0.82527                          0.622579                0.87869
+                     Class: ButtercupFelted_leaf Class: CandleHeath_strez_leaf Class: Carex_spp_leaf
+Sensitivity                              0.71429                      0.117647               0.91667
+Specificity                              0.99208                      0.984064               0.99803
+Pos Pred Value                           0.71429                      0.200000               0.91667
+Neg Pred Value                           0.99208                      0.970530               0.99803
+Prevalence                               0.02697                      0.032755               0.02312
+Detection Rate                           0.01927                      0.003854               0.02119
+Detection Prevalence                     0.02697                      0.019268               0.02312
+Balanced Accuracy                        0.85318                      0.550855               0.95735
+                     Class: CarpetHeath_L_F Class: CoralHeath_leaf Class: Dandelion_leaf Class: Flatweed
+Sensitivity                         1.00000               0.357143              0.266667        0.333333
+Specificity                         0.99803               0.986139              0.984127        0.998062
+Pos Pred Value                      0.92308               0.416667              0.333333        0.500000
+Neg Pred Value                      1.00000               0.982249              0.978304        0.996132
+Prevalence                          0.02312               0.026975              0.028902        0.005780
+Detection Rate                      0.02312               0.009634              0.007707        0.001927
+Detection Prevalence                0.02505               0.023121              0.023121        0.003854
+Balanced Accuracy                   0.99901               0.671641              0.625397        0.665698
+                     Class: Flatweed_flower_yellow Class: HairyButtercupFlowerYellow
+Sensitivity                               0.600000                          0.000000
+Specificity                               0.994163                          1.000000
+Pos Pred Value                            0.500000                               NaN
+Neg Pred Value                            0.996101                          0.996146
+Prevalence                                0.009634                          0.003854
+Detection Rate                            0.005780                          0.000000
+Detection Prevalence                      0.011561                          0.000000
+Balanced Accuracy                         0.797082                          0.500000
+                     Class: HairyButtercupLeaf Class: MixedGrass Class: MountainCelery_leaf
+Sensitivity                           0.600000           0.58333                   0.416667
+Specificity                           0.998054           0.99408                   0.992110
+Pos Pred Value                        0.750000           0.70000                   0.555556
+Neg Pred Value                        0.996117           0.99018                   0.986275
+Prevalence                            0.009634           0.02312                   0.023121
+Detection Rate                        0.005780           0.01349                   0.009634
+Detection Prevalence                  0.007707           0.01927                   0.017341
+Balanced Accuracy                     0.799027           0.78871                   0.704389
+                     Class: MouseearHW_leaf Class: MouseEarHW_strez_leaf Class: NativeYamDaisy_leaf
+Sensitivity                         0.87500                      0.27273                    0.64286
+Specificity                         0.98182                      0.98228                    0.98614
+Pos Pred Value                      0.70000                      0.25000                    0.56250
+Neg Pred Value                      0.99387                      0.98422                    0.99006
+Prevalence                          0.04624                      0.02119                    0.02697
+Detection Rate                      0.04046                      0.00578                    0.01734
+Detection Prevalence                0.05780                      0.02312                    0.03083
+Balanced Accuracy                   0.92841                      0.62751                    0.81450
+                     Class: OHW_leaf Class: OWH_flower Class: OWH_leaf_purple
+Sensitivity                  0.45455           0.95000                0.00000
+Specificity                  0.98390           0.98998                1.00000
+Pos Pred Value               0.55556           0.79167                    NaN
+Neg Pred Value               0.97605           0.99798                0.99422
+Prevalence                   0.04239           0.03854                0.00578
+Detection Rate               0.01927           0.03661                0.00000
+Detection Prevalence         0.03468           0.04624                0.00000
+Balanced Accuracy            0.71922           0.96999                0.50000
+                     Class: Pale_Everlasting_Strez_leaf Class: PineappleGrass_strez_leaf
+Sensitivity                                     0.90909                         0.333333
+Specificity                                     0.99409                         0.982249
+Pos Pred Value                                  0.76923                         0.307692
+Neg Pred Value                                  0.99802                         0.984190
+Prevalence                                      0.02119                         0.023121
+Detection Rate                                  0.01927                         0.007707
+Detection Prevalence                            0.02505                         0.025048
+Balanced Accuracy                               0.95159                         0.657791
+                     Class: PricklySnowGrass Class: SheepSorrell_leaf Class: SilverSnowDaisy_topsideLeaf
+Sensitivity                          0.60000                  0.46667                            0.60000
+Specificity                          0.99411                  0.98611                            0.98611
+Pos Pred Value                       0.66667                  0.50000                            0.56250
+Neg Pred Value                       0.99216                  0.98416                            0.98807
+Prevalence                           0.01927                  0.02890                            0.02890
+Detection Rate                       0.01156                  0.01349                            0.01734
+Detection Prevalence                 0.01734                  0.02697                            0.03083
+Balanced Accuracy                    0.79705                  0.72639                            0.79306
+                     Class: SilverSnowDaisy_undersideLeaf Class: SmallStarPlantain_leaf
+Sensitivity                                       1.00000                       0.30000
+Specificity                                       0.98425                       0.99411
+Pos Pred Value                                    0.57895                       0.50000
+Neg Pred Value                                    1.00000                       0.98635
+Prevalence                                        0.02119                       0.01927
+Detection Rate                                    0.02119                       0.00578
+Detection Prevalence                              0.03661                       0.01156
+Balanced Accuracy                                 0.99213                       0.64705
+                     Class: Snow_Gentian_leaf Class: SpoonDaisy_strez_leaf Class: StJohn_Worf_flower
+Sensitivity                           1.00000                      0.73333                   0.33333
+Specificity                           0.99803                      0.97222                   0.99412
+Pos Pred Value                        0.92308                      0.44000                   0.50000
+Neg Pred Value                        1.00000                      0.99190                   0.98830
+Prevalence                            0.02312                      0.02890                   0.01734
+Detection Rate                        0.02312                      0.02119                   0.00578
+Detection Prevalence                  0.02505                      0.04817                   0.01156
+Balanced Accuracy                     0.99901                      0.85278                   0.66373
+                     Class: StJohn_Worf_leaf Class: Variable_Eyebright_leaf Class: WhiteCover_leaf
+Sensitivity                          0.00000                       0.000000                0.52941
+Specificity                          0.98232                       0.992141                0.97610
+Pos Pred Value                       0.00000                       0.000000                0.42857
+Neg Pred Value                       0.98039                       0.980583                0.98394
+Prevalence                           0.01927                       0.019268                0.03276
+Detection Rate                       0.00000                       0.000000                0.01734
+Detection Prevalence                 0.01734                       0.007707                0.04046
+Balanced Accuracy                    0.49116                       0.496071                0.75275
+                     Class: WoollyBillyButton_strez_leaf Class: Xsub_flower Class: Xsub_leaf
+Sensitivity                                     0.307692            0.00000         0.000000
+Specificity                                     0.984190            1.00000         0.998054
+Pos Pred Value                                  0.333333                NaN         0.000000
+Neg Pred Value                                  0.982249            0.98844         0.990347
+Prevalence                                      0.025048            0.01156         0.009634
+Detection Rate                                  0.007707            0.00000         0.000000
+Detection Prevalence                            0.023121            0.00000         0.001927
+Balanced Accuracy                               0.645941            0.50000         0.499027
+
+$varImp
+rf variable importance
+
+  variables are sorted by maximum importance across the classes
+        AlpineGroundsel_flower AlpineGroundsel_leaf AlpineSunray_Flower AlpineSunray_leaf
+Red                     75.346                31.53               59.04             60.61
+Green                   68.280                36.07               73.90             30.19
+NIR                     10.145                23.32               37.67             43.76
+RedEdge                  7.783                24.43               28.36             14.56
+        BillyButton_flower BillyButton_leaf BillyButton_leaf_mainrange BroadLeaveGrass
+Red                 126.85            60.53                      22.94           49.83
+Green                38.77            65.39                      27.97           32.47
+NIR                  42.26            28.29                      28.83           25.28
+RedEdge              22.39            38.17                      23.76           36.08
+        ButtercupFelted_leaf CandleHeath_strez_leaf Carex_spp_leaf CarpetHeath_L_F CoralHeath_leaf
+Red                    22.31                  23.97          31.54           49.89          18.644
+Green                  38.03                  11.81          47.07           83.62          41.744
+NIR                    19.46                  23.71          12.34           31.10          32.235
+RedEdge                22.94                  17.99          57.25           34.60           2.251
+        Dandelion_leaf Flatweed Flatweed_flower_yellow HairyButtercupFlowerYellow HairyButtercupLeaf
+Red             15.947   5.4787                  31.87                      5.488              7.154
+Green           12.114   5.2552                  34.72                      9.992              4.517
+NIR              2.333   0.7698                  18.33                      4.425              6.337
+RedEdge          5.698   0.3802                  11.23                      3.536              6.258
+        MixedGrass MountainCelery_leaf MouseearHW_leaf MouseEarHW_strez_leaf NativeYamDaisy_leaf
+Red          7.578              22.180           46.39                17.362               8.804
+Green       43.166              18.394           43.72                25.738              23.233
+NIR          6.859              19.135           59.32                 7.757              35.738
+RedEdge     40.847               4.797           35.21                 9.441              28.560
+        OHW_leaf OWH_flower OWH_leaf_purple Pale_Everlasting_Strez_leaf PineappleGrass_strez_leaf
+Red        35.07     113.48           21.24                       62.00                     27.74
+Green      22.20      29.69           24.89                       32.78                     21.51
+NIR        34.45      22.09           15.17                       32.58                      9.72
+RedEdge    24.31      15.36           13.48                       29.27                     19.22
+        PricklySnowGrass SheepSorrell_leaf SilverSnowDaisy_topsideLeaf SilverSnowDaisy_undersideLeaf
+Red                10.96             45.52                       31.56                         59.49
+Green              59.13             31.65                       56.88                         60.16
+NIR                10.67             20.33                       46.12                         34.21
+RedEdge            40.88             21.09                       25.14                         23.17
+        SmallStarPlantain_leaf Snow_Gentian_leaf SpoonDaisy_strez_leaf StJohn_Worf_flower
+Red                      41.28            144.30                 37.02             21.392
+Green                    40.30             28.02                 48.25             15.900
+NIR                      19.54             10.14                 27.41              7.803
+RedEdge                  14.87             16.81                 20.15              5.802
+        StJohn_Worf_leaf Variable_Eyebright_leaf WhiteCover_leaf WoollyBillyButton_strez_leaf
+Red               21.979                  13.956           35.73                        32.80
+Green             17.246                   5.027           31.20                        26.23
+NIR                2.372                  13.690           32.78                        22.44
+RedEdge            6.833                  14.602           19.43                        13.90
+        Xsub_flower Xsub_leaf
+Red          19.565     2.974
+Green        15.308     7.058
+NIR           9.186     4.951
+RedEdge       5.037     1.471
+
