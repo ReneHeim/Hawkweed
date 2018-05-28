@@ -19,8 +19,6 @@ library(tictoc)
 source('R/20170601_FUN_DropCatVar.R')
 source('R/20171224_FUN_raw2speclibhsdar.R')
 
-dir.create('data', FALSE, FALSE) #creating directories
-dir.create('R', FALSE, FALSE)
 dir.create('output', FALSE, FALSE)
 
 
@@ -46,7 +44,8 @@ test <- data.wo.noise[data.wo.noise$Type %!in% c('AlpineSunray_Flower',
 test$Type <- drop.levels(test$Type)
 
 unique(test$Type)
-#Append tidied versions by Michael
+
+# 1.2 Append tidied versions by Michael Chang
 
 a <- read.csv("data/AlpineSunray_Flower2.csv", check.names = FALSE)
 b <- read.csv("data/XSub_flower2.csv", check.names = FALSE)
@@ -72,14 +71,11 @@ unique(df$Type)
 
 df <- df[order(df$Type),]
  
-subsets <- split(data.wo.noise, data.wo.noise$Type) #Splits df into subsets according to 'Type' column
-
-# subsets$OHWa <- subsets$OHWa[apply(subsets$OHWa[, -1], 
-    #MARGIN = 1, function(x) all(x < 100)), ] #Rmv refl values above 100 
-
- 
+subsets <- split(data.wo.noise, data.wo.noise$Type) 
+#Splits df into subsets according to 'Type' column
 
 # 2 Screen Spectra manually for outlier
+
 # unique(df$Type) #Check how many unique types will be classified
 # str(df)
 
