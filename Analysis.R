@@ -18,6 +18,8 @@ library(tictoc)
 
 source('R/20170601_FUN_DropCatVar.R')
 source('R/20171224_FUN_raw2speclibhsdar.R')
+source('R/FUN_Remove_Functional_Outlier.R')
+source('R/FUN_prepggwide2long.R')
 
 dir.create('output', FALSE, FALSE)
 
@@ -72,121 +74,64 @@ unique(df$Type)
 df <- df[order(df$Type),]
  
 subsets <- split(data.wo.noise, data.wo.noise$Type) 
-#Splits df into subsets according to 'Type' column
 
-# 2 Screen Spectra manually for outlier
-
-# unique(df$Type) #Check how many unique types will be classified
-# str(df)
-
-pdf("Fig1_spectra_before_outrmv.pdf", width = 40, height =20)
-par(mfrow=c(6,9))
+plots.bef <- list()
 for (i in 1:length(subsets)){
-        
-    labnames <- list(main="Width", 
-                     xlab="Wavelength [nm]", 
-                     ylab="Reflectance [%]")
-    
-    set <- subsets[[i]] 
-    set.2 <- as.matrix(set[,2:2002])
-    f.res <- fdata(set.2, 
-                   argvals = as.integer(names(set[,2:2002])), 
-                   names = labnames)
-        
-       plot(f.res, main = names(subsets)[i])
-       
+  
+  p <- prep_gg(as.data.frame(subsets[[i]]))
+  
+  plots.bef[[i]] <- ggplot(p, aes(Wavelength, Reflectance, colour = Type)) +
+    geom_point(aes(shape=Type), size = .1)+
+    labs(title=paste(names(subsets[i])), x= "WL", y="R")+
+    theme_minimal()+
+    theme(text=element_text(size=8))+
+    theme(legend.position="none")
+  
 }
-dev.off()
 
-# 3 Remove obvious outlier manually based on visual assessments of Fig1
+p.bef <- plot_grid(plotlist=plots.bef)
 
-# Discard unrealiable species
-
-names(subsets)
-
-subsets[c('Camomile_sunray_flower', 'PaleEverlasting_Strez_flower')] <- NULL
-
-#Remove specific subsets
-
-#HairyButtercupFlower
-
-which.min(subsets$HairyButtercupFlowerYellow[,'1000'] )
-subsets$HairyButtercupFlowerYellow <- subsets$HairyButtercupFlowerYellow[-7,] # use multiple times and check plot if spectra are gone
-
-#AlpineSunrayLeaf
-
-which.max(subsets$AlpineSunray_leaf[,'500'] )
-subsets$AlpineSunray_leaf <- subsets$AlpineSunray_leaf[-26,]
-
-which.min(subsets$AlpineSunray_leaf[,'1000'] )
-subsets$AlpineSunray_leaf <- subsets$AlpineSunray_leaf[-34,]
-which.min(subsets$AlpineSunray_leaf[,'1000'] )
-subsets$AlpineSunray_leaf <- subsets$AlpineSunray_leaf[-24,]
-which.min(subsets$AlpineSunray_leaf[,'1000'] )
-subsets$AlpineSunray_leaf <- subsets$AlpineSunray_leaf[-4,]
-
-#Pale_Everlasting_Strez_leaf
-which.min(subsets$Pale_Everlasting_Strez_leaf[,'900'] )
-subsets$Pale_Everlasting_Strez_leaf <- subsets$Pale_Everlasting_Strez_leaf[-29,]
-which.min(subsets$Pale_Everlasting_Strez_leaf[,'900'] )
-subsets$Pale_Everlasting_Strez_leaf <- subsets$Pale_Everlasting_Strez_leaf[-43,]
-
-#MouseEarHW_strez_leaf
-which.min(subsets$MouseEarHW_strez_leaf[,'1000'] )
-subsets$MouseEarHW_strez_leaf <- subsets$MouseEarHW_strez_leaf[-22,]
-
-which.min(subsets$MouseEarHW_strez_leaf[,'1000'] )
-subsets$MouseEarHW_strez_leaf <- subsets$MouseEarHW_strez_leaf[-13,]
-
-which.min(subsets$MouseEarHW_strez_leaf[,'1000'] )
-subsets$MouseEarHW_strez_leaf <- subsets$MouseEarHW_strez_leaf[-23,]
-
-which.min(subsets$MouseEarHW_strez_leaf[,'1000'] )
-subsets$MouseEarHW_strez_leaf <- subsets$MouseEarHW_strez_leaf[-12,]
-
-which.max(subsets$MouseEarHW_strez_leaf[,'1000'] )
-subsets$MouseEarHW_strez_leaf <- subsets$MouseEarHW_strez_leaf[-12,]
-
-which.max(subsets$MouseEarHW_strez_leaf[,'1000'] )
-subsets$MouseEarHW_strez_leaf <- subsets$MouseEarHW_strez_leaf[-30,]
-
-#Plot result of visual outlier assessment
-
-pdf("Fig2_spectra_after_manualoutrmv.pdf", width = 32, height =18)
-par(mfrow=c(6,9))
-for (i in 1:length(subsets)){
-        
-        labnames <- list(main="Width", xlab="Wavelength [nm]", ylab="Reflectance [%]")  
-        set <- subsets[[i]] 
-        set.2 <- as.matrix(set[,2:2002])
-        f.res <- fdata(set.2, argvals = as.integer(names(set[,2:2002])), names = labnames)
-        
-        plot(f.res, main = names(subsets)[i])
-        
-}
-dev.off()
+ggsave("output/before.pdf",
+       plot = p.bef,
+       width = 40,
+       height = 20,
+       units = "cm",
+       dpi = 50
+)
 
 
 # 4 fda pkg outlier detection
 
-source('R/Remove_Functional_Outlier_June2017.R')
+
+cleaned_data <- lapply(subsets, rmv.funct.outlier,depth.mode, 1, 0.05, 0.5)
 
 
-cleaned_data <- lapply(subsets, rmv.funct.outlier)
-
-pdf("Fig3_spectra_after_autooutrmv.pdf", width = 32, height =18)
-par(mfrow=c(6,9))
+plots <- list()
 for (i in 1:length(cleaned_data)){
-        
-        labnames <- list(main="Width", xlab="Wavelength [nm]", ylab="Reflectance [%]")  
-        set <- cleaned_data[[i]] 
-        set.2 <- as.matrix(set[,2:2002])
-        f.res <- fdata(set.2, argvals = as.integer(names(set[,2:2002])), names = labnames)
-        
-        plot(f.res, main = names(cleaned_data)[i])
+  
+  p <- prep_gg(as.data.frame(cleaned_data[[i]]), agg = FALSE)
+  
+  plots[[i]] <- ggplot(p, aes(Wavelength, Reflectance, colour = Type)) +
+    geom_point(aes(shape=Type), size = .1)+
+    labs(title=paste(names(cleaned_data[i])), x= "WL", y="R")+
+    theme_minimal()+
+    theme(text=element_text(size=8))+
+    theme(legend.position="none")
+    
         
 }
-dev.off()
+
+
+p.aft <- plot_grid(plotlist=plots)
+
+ggsave("output/after.pdf",
+       plot = p.aft,
+       width = 40,
+       height = 20,
+       units = "cm",
+       dpi = 50
+)
+
 
 cleaned.df <- bind_rows(cleaned_data)
 
