@@ -2,7 +2,7 @@
   
 # This code analysis spectral profiles of plant species from Mount Kosciuszko
 # National Park, NSW, Australia. Initially, outlying spectra from each species 
-# will be removed.Then, three different machine learning algorithms (SVM, Random Forest, xgBoost Dart) will be trained and validated. Follwoing questions will be
+# will be removed.Then, a Random Forest classifier will be trained and validated. Follwoing questions will be
 # addressed:
 #   
 # Can spectral profiles of all species be accurately classified? 

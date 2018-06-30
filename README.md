@@ -17,9 +17,9 @@ addressed:
 2. Download and open the provided file _Analysis_scriptonly.R_
 3. Uncomment and run line 18-28 to install required packages.
 4. Download _R/_ folder where custom made functions are contained. Save this folder in you R project working directory.
-5. Create a _data/_ folder, add data to folder and provide path to data folder in line 48.
 5. Run entire code to reproduce analysis.
 6. All results can be found in the _output/_ folder.
+7. For further explanations, the _Analysis.Rmd_ can be rendered.
 
 The use of this code must be cited.
 
