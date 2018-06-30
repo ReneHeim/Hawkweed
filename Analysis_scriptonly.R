@@ -7,8 +7,7 @@
 #   
 # Can spectral profiles of all species be accurately classified? 
 # Is the classification still accurate if spectral profiles are resampled according to the specifications of following sensors:
-# Sequoia (drone sensor) 
-# Landsat-8
+# Micasense Parrot Sequoia 
 # Sentinel-2
 
 ## Set up working environment
