@@ -1,3 +1,5 @@
+## Abstract
+
 This code analysis spectral profiles of plant species from Mount Kosciuszko
 National Park, NSW, Australia. Initially, outlying spectra from each species 
 will be removed.Then, three different machine learning algorithms (SVM, Random Forest, xgBoost Dart) will be trained and validated. Follwoing questions will be
@@ -9,7 +11,7 @@ addressed:
   + Landsat-8
   + Sentinel-2
 
-#Instructions
+## Instructions
 
 1. Please install R and R Studio.
 2. Download and open the provided file _Analysis_scriptonly.R_
@@ -20,7 +22,7 @@ addressed:
 
 The use of this code must be cited.
 
-#Licences
+## Licences
 
 Data: CC-0 attribution requested in reuse
 Manuscript: CC-BY-4.0
