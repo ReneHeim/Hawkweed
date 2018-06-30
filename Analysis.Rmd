@@ -1,0 +1,535 @@
+---
+output:
+  html_document: default
+  pdf_document: default
+  word_document: default
+---
+# Spectral discriminaton of invasive plant species: Hawkweed
+
+This code analysis spectral profiles of plant species from Mount Kosciuszko
+National Park, NSW, Australia. Initially, outlying spectra from each species 
+will be removed.Then, three different machine learning algorithms (SVM, Random Forest, xgBoost Dart) will be trained and validated. Follwoing questions will be
+addressed:
+
+- Can spectral profiles of all species be accurately classified? 
+- Is the classification still accurate if spectral profiles are resampled according to the specifications of following sensors:
+  + Sequoia (drone sensor) 
+  + Landsat-8
+  + Sentinel-2
+  
+## Set up working environment
+
+We first create a folder that will contain all analysis outputs:
+```{r setup}
+dir.create('output', FALSE, FALSE)
+```
+
+Then, we can install all required R packages:
+```{r installpkgs, eval=FALSE}
+install.packages(c("dplyr",
+                   "hsdar", 
+                   "fda",
+                   "fda.usc",
+                   "prospectr",
+                   "gdata",
+                   "caret",
+                   "reshape2",
+                   "cowplot",
+                   "ggplot2",
+                   "tictoc"))
+```
+
+Now we load the installed packages and custom made functions:
+```{r loadfcts, results='hide', message=FALSE, warning=FALSE}
+library(dplyr)
+library(hsdar) #hyperspectral data processing
+library(fda) #outlier detection
+library(fda.usc) #outlier detection
+library(prospectr) #spectral binning
+library(gdata) #drop factor levels
+library(caret) #classification
+library(reshape2) #reformat wide/long
+library(cowplot) #customize ggplot2 prints
+library(tictoc) #record time 
+
+source('R/FUN_drop_cat_var.R') 
+source('R/FUN_raw2speclibhsdar.R')
+source('R/FUN_Remove_Functional_Outlier.R')
+source('R/FUN_prepggwide2long.R')
+```
+
+## Cleaning data
+
+Load data and remove noise:
+```{r clean}
+data.original <- read.csv("data/All samples_converted.csv", check.names = FALSE)
+
+data.rmv.noise <- data.original[,match('400', 
+    names(data.original)):match('2400', 
+    names(data.original))] #Rmv bands above and below given numeric values
+
+names(data.rmv.noise[,c(1,ncol(data.rmv.noise))]) #Check bands after removal
+
+data.wo.noise <- cbind(data.original['Type'],
+                       data.rmv.noise) #Build final df
+
+ 
+subsets <- split(data.wo.noise, data.wo.noise$Type)
+```
+
+Spectra as they were recorded, can be found in output/ folder:
+```{r beforeoutlier, results='hide'}
+plots.bef <- list()
+for (i in 1:length(subsets)){
+  
+  p <- prep_gg(as.data.frame(subsets[[i]]))
+  
+  plots.bef[[i]] <- ggplot(p, aes(Wavelength, Reflectance, colour = Type)) +
+    geom_point(aes(shape=Type), size = .1)+
+    labs(title=paste(names(subsets[i])), x= "WL", y="R")+
+    theme_minimal()+
+    theme(text=element_text(size=8))+
+    theme(legend.position="none")
+  
+}
+
+p.bef <- plot_grid(plotlist=plots.bef)
+
+ggsave("output/spectrabefore.pdf",
+       plot = p.bef,
+       width = 40,
+       height = 20,
+       units = "cm",
+       dpi = 50
+)
+```
+
+Outlier will be removed. Parameters for depth function can be found in the fda.usc package support:
+```{r outliermv}
+cleaned_data <- lapply(subsets, rmv.funct.outlier,depth.mode, 1, 0.05, 0.5)
+```
+
+Plot, after outliers have been removed, can be found in output/ folder:
+```{r afteroutlier, echo=FALSE, results='hide'}
+plots <- list()
+for (i in 1:length(cleaned_data)){
+  
+  p <- prep_gg(as.data.frame(cleaned_data[[i]]), agg = FALSE)
+  
+  plots[[i]] <- ggplot(p, aes(Wavelength, Reflectance, colour = Type)) +
+    geom_point(aes(shape=Type), size = .1)+
+    labs(title=paste(names(cleaned_data[i])), x= "WL", y="R")+
+    theme_minimal()+
+    theme(text=element_text(size=8))+
+    theme(legend.position="none")
+    
+        
+}
+
+
+p.aft <- plot_grid(plotlist=plots)
+
+ggsave("output/spectraafter.pdf",
+       plot = p.aft,
+       width = 40,
+       height = 20,
+       units = "cm",
+       dpi = 50
+)
+```
+
+We store the data where outlier have been removed for classification:
+```{r savedata}
+cleaned.df <- bind_rows(cleaned_data)
+
+write.csv(cleaned.df, 'output/20180622_clean_spectra.csv', row.names = FALSE)
+
+rmved <- nrow(data.original)-nrow(cleaned.df)
+paste(rmved, "spectral profiles removed.")
+```
+
+## Classification
+
+Load clean data:
+```{r loadclass}
+cleaned.df <- read.csv("output/20180622_clean_spectra.csv", check.names = FALSE)
+
+```
+
+Create training and test data:
+```{r partitionall}
+inTraining <- createDataPartition(cleaned.df$Type, p = .75, list = FALSE)
+train <- cleaned.df[ inTraining,]
+test  <- cleaned.df[-inTraining,]
+```
+
+Recursive feature elimination to find most important features and account for multicollinearity effects:
+```{r rfeall, results='hide'}
+options(warn=-1)
+
+subsets <- c(5, 50, 500)
+
+ctrl <- rfeControl(functions = rfFuncs,
+                   method = "repeatedcv",
+                   repeats = 5,
+                   verbose = FALSE)
+
+rfProfile <- rfe(x=train[,-1], y=train[,1],
+                 sizes = subsets,
+                 rfeControl = ctrl)
+```
+
+Setting up control parameters for the training process:
+```{r ctrl}
+# Define the training control
+fitControl <- trainControl(
+    method = 'boot',                   # k-fold cross validation
+    number = 5,                      # number of folds
+    savePredictions = 'final',       # saves predictions for optimal                                           tuning parameter
+    classProbs = T,                  # should class probabilities be                                           returned
+    summaryFunction=multiClassSummary  # results summary function
+) 
+
+rfGrid <- expand.grid(mtry = trunc(sqrt(ncol(train)))) 
+```
+
+Training Random Forest
+```{r trainrfall}
+
+tic("train")
+# RF Model Training
+
+rfFit <- train(Type~.,
+               train,method = "rf",
+               importance = TRUE, 
+               ntree=500,
+               trControl = fitControl, 
+               tuneGrid = rfGrid,
+               metric = "Accuracy", 
+               maximize = TRUE) 
+
+toc()
+```
+
+Evaluate models on isolated data:
+```{r testrfall, results='hide'}
+# RF Model Testing
+
+rfPred <- 
+  predict.train(rfFit, test[, !names(test) %in% c("Type")], type = "raw")
+
+res.all <- 
+  list(fit = rfFit,
+       pred = predict.train(rfFit, test[, !names(test) %in% c("Type")],        type = "raw"),
+       confusion = confusionMatrix(rfPred, test$Type),
+       varImp = varImp(rfFit, scale = FALSE))
+```
+
+## Classification of leaves only
+
+Filter all species where only leaves have been measured:
+```{r dataleaf}
+leaf <- cleaned.df[grep("eaf", cleaned.df$Type), ]
+leaf$Type <- drop.levels(leaf$Type)
+unique(leaf$Type)
+```
+
+Create training and test data:
+```{r partitionleaf}
+inTraining <- createDataPartition(leaf$Type, p = .75, list = FALSE)
+train.l <- leaf[ inTraining,]
+test.l  <- leaf[-inTraining,]
+```
+
+Recursive feature elimination:
+```{r rfeleaf, results='hide'}
+options(warn=-1)
+
+subsets <- c(5, 50, 500)
+
+ctrl <- rfeControl(functions = rfFuncs,
+                   method = "repeatedcv",
+                   repeats = 5,
+                   verbose = FALSE)
+
+rfProfile.l <- rfe(x=train.l[,-1], y=train.l[,1],
+                 sizes = subsets,
+                 rfeControl = ctrl)
+```
+
+Training Random Forest
+```{r trainleaf}
+rfGrid <- expand.grid(mtry = trunc(sqrt(ncol(train.l)))) 
+tic("train.l")
+# RF Model Training
+
+rfFit.l <- train(Type~., 
+               train.l,
+               method = "rf",
+               importance = TRUE, 
+               ntree=500,
+               trControl = fitControl, 
+               tuneGrid = rfGrid,
+               metric = "Accuracy", 
+               maximize = TRUE) 
+toc()
+```
+
+Evaluate models on isolated data:
+```{r testleaf, results='hide'}
+# RF Model Testing
+
+rfPred.l <- 
+  predict.train(rfFit.l, test.l[, !names(test.l) %in% c("Type")], type = "raw")
+
+res.l <- 
+  list(fit = rfFit.l,
+       pred = predict.train(rfFit.l, test.l[, !names(test.l) %in% c("Type")],        type = "raw"),
+       confusion = confusionMatrix(rfPred.l, test.l$Type),
+       varImp = varImp(rfFit.l, scale = FALSE))
+```
+
+
+## Classification flower only
+
+Filter all species where only flowers have been measured:
+```{r flowerdata}
+flower <- cleaned.df[grep("ower", cleaned.df$Type), ]
+flower$Type <- drop.levels(flower$Type)
+unique(flower$Type)
+```
+
+Create training and test data:
+```{r partitionflower}
+inTraining <- createDataPartition(flower$Type, p = .75, list = FALSE)
+train.f <- flower[ inTraining,]
+test.f  <- flower[-inTraining,]
+```
+
+Recursive feature elimination:
+```{r rfeflower, results='hide'}
+options(warn=-1)
+
+subsets <- c(5, 50, 500)
+
+ctrl <- rfeControl(functions = rfFuncs,
+                   method = "repeatedcv",
+                   repeats = 5,
+                   verbose = FALSE)
+
+rfProfile.f <- rfe(x=train.f[,-1], y=train.f[,1],
+                 sizes = subsets,
+                 rfeControl = ctrl)
+
+```
+
+Training Random Forest:
+```{r trainflower}
+rfGrid <- expand.grid(mtry = trunc(sqrt(ncol(train.f)))) 
+tic("train.f")
+# RF Model Training
+
+rfFit.f <- train(Type~., 
+               train.f,
+               method = "rf",
+               importance = TRUE, 
+               ntree=500,
+               trControl = fitControl, 
+               tuneGrid = rfGrid,
+               metric = "Accuracy", 
+               maximize = TRUE) 
+
+toc()
+```
+
+Evaluate models on isolated data:
+```{r testflower, results='hide'}
+# RF Model Testing
+
+rfPred.f <- 
+  predict.train(rfFit.f, test.f[, !names(test.f) %in% c("Type")], type = "raw")
+
+res.f <- 
+  list(fit = rfFit.f,
+       pred = predict.train(rfFit.f, test.f[, !names(test.f) %in% c("Type")],        type = "raw"),
+       confusion = confusionMatrix(rfPred.f, test.f$Type),
+       varImp = varImp(rfFit.f, scale = FALSE))
+```
+
+## Resample spectral data to other sensor specifications
+
+First we rename the cleaned data to avoid confusion when building a spectral library for rewsampling:
+```{r resampdata}
+hypdata <- cleaned.df
+
+# Create spectral library to use hsdar pkg
+
+speclib <- raw2speclib(hypdata) #Function requires just numbers as colnames.
+plot(speclib)
+```
+
+Resample hyperspectral data to Micasense Sequoia band specifications (Green 530-570nm, Red 640-680nm, RedEdge 730-740 nm, NIR 770-810nm):
+```{r sequoia}
+center <-  c(550, 660, 735, 790)
+fwhm <- c(20, 20, 5, 20)
+
+sequoia <- as.data.frame(cbind(center, fwhm))
+
+data_seq <- spectralResampling(speclib, sequoia)
+plot(data_seq)
+```
+
+And also to Sentinel2 specifications:
+```{r sentinel}
+data_senti2 <- spectralResampling(speclib, 'Sentinel2')
+plot(data_senti2)
+```
+
+Extracting reflectance data from sequoia and sentinel spectral libraries for classification. Also, bands are renamed for clarity. First for Sequoia:
+```{r extrseq, results="hide"}
+seqdata <- as.data.frame(data_seq@spectra@spectra_ma)
+seqdata <- cbind('Type'=hypdata$Type, seqdata)
+str(seqdata)
+names(seqdata)
+
+newnamesSeq <- c("Type", "Green", "Red", "RedEdge", "NIR")
+
+
+names(seqdata) <- newnamesSeq
+```
+
+And then for Sentinel2:
+```{r extrsen, results="hide"}
+sentidata <- as.data.frame(data_senti2@spectra@spectra_ma)
+sentidata <- cbind('Type'=hypdata$Type, sentidata)
+str(sentidata)
+names(sentidata)
+
+newnamesSenti <- c("Type", "B1Aero", "B2Blue", "B3Green", "B4Red",
+                   "B5RE1", "B6RE2", "B7RE3", "B8NIR", "B9WaterVap",
+                   "B10SWIR1", "B11SWIR2", "B12SWIR3", "B13")
+
+names(sentidata) <- newnamesSenti
+```
+
+## Sentinel2 Classification
+
+Filter all species where only leaves have been measured:
+
+Create training and test data:
+```{r partitionsen}
+inTraining <- createDataPartition(sentidata$Type, p = .75, list = FALSE)
+train.sen <- sentidata[ inTraining,]
+test.sen  <- sentidata[-inTraining,]
+```
+
+Recursive feature elimination:
+```{r rfesen, results='hide'}
+options(warn=-1)
+
+subsets <- c(5, 50, 500)
+
+ctrl <- rfeControl(functions = rfFuncs,
+                   method = "repeatedcv",
+                   repeats = 5,
+                   verbose = FALSE)
+
+rfProfile.sen <- rfe(x=train.sen[,-1], y=train.sen[,1],
+                 sizes = subsets,
+                 rfeControl = ctrl)
+
+```
+
+Training Random Forest
+```{r trainsen}
+rfGrid <- expand.grid(mtry = trunc(sqrt(ncol(train.sen)))) 
+tic("train.sen")
+# RF Model Training
+
+rfFit.sen <- train(Type~., 
+               train.sen,
+               method = "rf",
+               importance = TRUE, 
+               ntree=500,
+               trControl = fitControl, 
+               tuneGrid = rfGrid,
+               metric = "Accuracy", 
+               maximize = TRUE) 
+toc()
+```
+
+Evaluate models on isolated data:
+```{r testsen, results='hide'}
+# RF Model Testing
+
+rfPred.sen <- 
+  predict.train(rfFit.sen, test.sen[, !names(test.sen) %in% c("Type")], type = "raw")
+
+res.sen <- 
+  list(fit = rfFit.sen,
+       pred = predict.train(rfFit.sen, test.sen[, !names(test.sen) %in% c("Type")],        type = "raw"),
+       confusion = confusionMatrix(rfPred.sen, test.sen$Type),
+       varImp = varImp(rfFit.sen, scale = FALSE))
+
+```
+
+## Sequoia Classification
+
+Filter all species where only leaves have been measured:
+
+Create training and test data:
+```{r partitionseq}
+inTraining <- createDataPartition(seqdata$Type, p = .75, list = FALSE)
+train.seq <- seqdata[ inTraining,]
+test.seq  <- seqdata[-inTraining,]
+```
+
+Recursive feature elimination:
+```{r rfeseq, results='hide'}
+options(warn=-1)
+
+subsets <- c(5, 50, 500)
+
+ctrl <- rfeControl(functions = rfFuncs,
+                   method = "repeatedcv",
+                   repeats = 5,
+                   verbose = FALSE)
+
+rfProfile.seq <- rfe(x=train.seq[,-1], y=train.seq[,1],
+                 sizes = subsets,
+                 rfeControl = ctrl)
+```
+
+Training Random Forest
+```{r trainseq}
+rfGrid <- expand.grid(mtry = trunc(sqrt(ncol(train.seq)))) 
+tic("train.seq")
+# RF Model Training
+
+rfFit.seq <- train(Type~., 
+               train.seq,
+               method = "rf",
+               importance = TRUE, 
+               ntree=500,
+               trControl = fitControl, 
+               tuneGrid = rfGrid,
+               metric = "Accuracy", 
+               maximize = TRUE) 
+toc()
+```
+
+Evaluate models on isolated data:
+```{r testseq, results='hide'}
+# RF Model Testing
+
+rfPred.seq <- 
+  predict.train(rfFit.seq, test.seq[, !names(test.seq) %in% c("Type")], type = "raw")
+
+res.seq <- 
+  list(fit = rfFit.seq,
+       pred = predict.train(rfFit.seq, test.seq[, !names(test.seq) %in% c("Type")],        type = "raw"),
+       confusion = confusionMatrix(rfPred.seq, test.seq$Type),
+       varImp = varImp(rfFit.seq, scale = FALSE))
+```
+
+
