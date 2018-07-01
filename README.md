@@ -20,7 +20,9 @@ addressed:
 6. All results can be found in the _output/_ folder.
 7. For further explanations, the _Analysis.Rmd_ can be rendered.
 
-The use of this code must be cited.
+The use of this code must be cited:
+
+Heim, 2018, Spectral classification of invasive Hawkweek (_Hieracium aurantiacum_) at Mt. Kosciuszko NP. https://github.com/ReneHeim/Hawkweed
 
 ## Data
 
